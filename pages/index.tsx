@@ -1,9 +1,37 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
+import { ChangeEvent, useState } from 'react';
+import { BASE_URL } from '../config';
+import { SmiteGod } from '../models/smite.god';
 import styles from '../styles/Home.module.css'
 
-const Home: NextPage = () => {
+export interface HomeProps {
+  smiteGods: SmiteGod[];
+  roles: string[];
+}
+
+const Home: NextPage<HomeProps> = ({ smiteGods, roles }) => {
+  const [index, setIndex] = useState(0);
+  const current = smiteGods[index];
+  const [role, setRole] = useState(roles[0]);
+
+  function randomize() {
+    const availableIndices = smiteGods.reduce((indices: number[], smiteGod: SmiteGod, currentIndex: number) => {
+      if (smiteGod.Roles.includes(role) && index !== currentIndex) {
+        indices.push(currentIndex);
+      }
+      return indices;
+    }, []);
+    const randomIndex = Math.floor(Math.random() * availableIndices.length);
+    setIndex(availableIndices[randomIndex]);
+  }
+
+  function onChangeRole(event: ChangeEvent<HTMLSelectElement>) {
+    const { value } = event.target;
+    setRole(value);
+  }
+
   return (
     <div className={styles.container}>
       <Head>
@@ -13,44 +41,18 @@ const Home: NextPage = () => {
       </Head>
 
       <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
-
-        <p className={styles.description}>
-          Get started by editing{' '}
-          <code className={styles.code}>pages/index.js</code>
-        </p>
-
-        <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h2>Documentation &rarr;</h2>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
-
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h2>Learn &rarr;</h2>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/master/examples"
-            className={styles.card}
-          >
-            <h2>Examples &rarr;</h2>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-          >
-            <h2>Deploy &rarr;</h2>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
+        <div>
+          <Image src={current.godIcon_URL} alt={`${current.Name} Icon`} width={100} height={100} />
+          <h1>{current.Name}</h1>
+          <p>{current.Title}</p>
+          <p>{current.Pantheon}</p>
         </div>
+          <button type="button" onClick={randomize}>Randomize</button>
+          <select name="role" id="role" onChange={onChangeRole} defaultValue={role}>
+            {roles.map((role: string) => (
+              <option key={role} value={role}>{role}</option>
+            ))}
+          </select>
       </main>
 
       <footer className={styles.footer}>
@@ -70,3 +72,23 @@ const Home: NextPage = () => {
 }
 
 export default Home
+
+export async function getStaticProps() {
+  const res = await fetch(`${BASE_URL}/api/smite/gods`);
+  const smiteGods = await res.json();
+  const roles = smiteGods.reduce((list: string[], smiteGod: SmiteGod) => {
+    const roles = smiteGod.Roles.split(",").map((role: string) => role.trim());
+    for (const role of roles) {
+      if (!list.includes(role)) {
+        list.push(role);
+      }
+    }
+    return list;
+  }, []);
+  return {
+    props: {
+      smiteGods,
+      roles,
+    },
+  };
+}
