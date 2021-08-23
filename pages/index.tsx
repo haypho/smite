@@ -2,6 +2,7 @@ import type { NextPage } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
 import { ChangeEvent, useState } from 'react';
+import Card from '../components/card';
 import { BASE_URL } from '../config';
 import { SmiteGod } from '../models/smite.god';
 import styles from '../styles/Home.module.css'
@@ -41,12 +42,14 @@ const Home: NextPage<HomeProps> = ({ smiteGods, roles }) => {
       </Head>
 
       <main className={styles.main}>
-        <div>
-          <Image src={current.godIcon_URL} alt={`${current.Name} Icon`} width={100} height={100} />
-          <h1>{current.Name}</h1>
-          <p>{current.Title}</p>
-          <p>{current.Pantheon}</p>
-        </div>
+        <Card>
+          <Card.Background imageURL={current.godCard_URL}>
+          {/* <Image src={current.godIcon_URL} alt={`${current.Name} Icon`} width={100} height={100} /> */}
+            <h1>{current.Name}</h1>
+            <p>{current.Title}</p>
+            <p>{current.Pantheon}</p>
+          </Card.Background>
+        </Card>
           <button type="button" onClick={randomize}>Randomize</button>
           <select name="role" id="role" onChange={onChangeRole} defaultValue={role}>
             {roles.map((role: string) => (
