@@ -43,11 +43,18 @@ const Home: NextPage<HomeProps> = ({ smiteGods, roles }) => {
 
       <main className={styles.main}>
         <Card>
-          <Card.Background imageURL={current.godCard_URL}>
-            <h1>{current.Name}</h1>
-            <p>{current.Title}</p>
-            <p>{current.Pantheon}</p>
-          </Card.Background>
+          <Card.Front>
+            <div>Hello</div>
+          </Card.Front>
+          <Card.Back>
+            <Card.Background imageURL={current.godCard_URL}>
+              <div className={styles.content}>
+                <h1>{current.Name}</h1>
+                <p>{current.Title}</p>
+                <p>{current.Pantheon}</p>
+              </div>
+            </Card.Background>
+          </Card.Back>
         </Card>
           <button type="button" onClick={randomize}>Randomize</button>
           <select name="role" id="role" onChange={onChangeRole} defaultValue={role}>

@@ -1,11 +1,38 @@
-.card {
-  border-radius: 0.25em;
-  box-shadow: 0 0 0.25em black;
+.wrapper {
+  background-color: transparent;
   width: 200px;
   height: 300px;
-  color: white;
-  overflow: hidden;
+  perspective: 1000px;
   margin: 0.5em;
+}
+
+.card {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 0.25em;
+  box-shadow: 0 0 0.25em black;
+  color: white;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+}
+
+.wrapper:hover .card {
+  transform: rotateY(180deg);
+}
+
+.front, .back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  border-radius: 0.25em;
+  background: black;
+}
+
+.back {
+  transform: rotateY(180deg);
 }
 
 .background {
@@ -18,7 +45,8 @@
   background-repeat: no-repeat;
   background-position-x: center;
   background-position-y: top;
-  padding: 1em;
+  border-radius: 0.25em;
+  overflow: hidden;
 }
 
 .background::before {

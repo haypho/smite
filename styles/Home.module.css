@@ -120,6 +120,6 @@
   }
 }
 
-.cardContent {
-  object-fit: cover;
+.content {
+  padding: 1em;
 }
