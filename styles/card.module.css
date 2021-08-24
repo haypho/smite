@@ -17,7 +17,7 @@
   transform-style: preserve-3d;
 }
 
-.wrapper:hover .card {
+.flipped {
   transform: rotateY(180deg);
 }
 

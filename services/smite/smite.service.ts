@@ -47,8 +47,6 @@ export class SmiteService {
   /**
    */
   public static async getSessionAsync(): Promise<string> {
-    console.log("dev id", DEVELOPER_ID);
-    console.log("authKey", AUTH_KEY);
     if (SmiteService.sessionId && SmiteService.sessionExpirationDate < Date.now()) {
       return SmiteService.sessionId;
     }

@@ -15,9 +15,11 @@ export interface CardProps {
 }
 
 const Card: React.FC<CardProps> & StaticCard = ({ children }) => {
+  const [flipped, setFlipped] = useState<boolean>(false);
+  const flippedStyle = flipped ? styles.flipped : "";
   return (
-    <div className={styles.wrapper}>
-      <div className={styles.card}>
+    <div className={styles.wrapper} onClick={() => setFlipped(true)}>
+      <div className={`${styles.card} ${flippedStyle}`}>
         {children}
       </div>
     </div>
