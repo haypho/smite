@@ -1,7 +1,16 @@
-.content {
-  padding: 1em;
+.actions {
+  display: flex;
+  justify-content: space-between;
 }
 
 .cards {
   display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  margin: 1em 0;
+}
+
+.cards .content {
+  padding: 1em;
 }

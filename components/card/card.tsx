@@ -12,13 +12,14 @@ interface StaticCard {
 
 export interface CardProps {
   children?: ReactNode;
+  flipped?: boolean;
+  onClick?(): void;
 }
 
-const Card: React.FC<CardProps> & StaticCard = ({ children }) => {
-  const [flipped, setFlipped] = useState<boolean>(false);
+const Card: React.FC<CardProps> & StaticCard = ({ children, flipped, onClick }) => {
   const flippedStyle = flipped ? styles.flipped : "";
   return (
-    <div className={styles.wrapper} onClick={() => setFlipped(true)}>
+    <div className={styles.wrapper} onClick={onClick}>
       <div className={`${styles.card} ${flippedStyle}`}>
         {children}
       </div>

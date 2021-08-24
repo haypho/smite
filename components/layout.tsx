@@ -8,12 +8,20 @@ export interface LayoutProps {
 const Layout: React.FC<LayoutProps> = ({children}) => (
   <div className={styles.container}>
     <div className={styles.header}>
-      <h1>Smite</h1>
+      <div className={styles.content}>
+        <h1>Smite</h1>
+      </div>
     </div>
     <main className={styles.main}>
-      {children}
+      <div className={styles.content}>
+        {children}
+      </div>
     </main>
-    <footer className={styles.footer}>Hayden Phothong &copy; 2021</footer>
+    <footer className={styles.footer}>
+      <div className={styles.content}>
+        Hayden Phothong &copy; 2021
+      </div>
+    </footer>
   </div>
 );
 
