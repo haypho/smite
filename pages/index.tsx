@@ -14,25 +14,37 @@ export interface HomeProps {
 }
 
 const Home: NextPage<HomeProps> = ({ smiteGods, roles }) => {
-  const [index, setIndex] = useState(0);
-  const current = smiteGods[index];
+  const cardCount: number = 5;
+  const defaultIndices: number[] = []
+  for (let i = 0; i < cardCount; i++) {
+    defaultIndices.push(i);
+  }
+  const [indices, setIndices] = useState<number[]>(defaultIndices);
   const [role, setRole] = useState("Any");
 
-  function randomize() {
-    const availableIndices = smiteGods.reduce((indices: number[], smiteGod: SmiteGod, currentIndex: number) => {
-      if ((role === "Any" || smiteGod.Roles.includes(role)) && index !== currentIndex) {
-        indices.push(currentIndex);
+
+  const randomizeAll = () => {
+    const available = smiteGods.reduce((indices: number[], smiteGod: SmiteGod, smiteGodIndex: number) => {
+      const isValidRole: boolean = role === "Any" || smiteGod.Roles.includes(role);
+      const isNotChosen: boolean = !indices.includes(smiteGodIndex);
+      if (isValidRole && isNotChosen) {
+        indices.push(smiteGodIndex);
       }
       return indices;
     }, []);
-    const randomIndex = Math.floor(Math.random() * availableIndices.length);
-    setIndex(availableIndices[randomIndex]);
+
+    const randomIndices: number[] = [];
+    for (let i = 0; i < cardCount; i++) {
+      let randomIndex: number;
+      do {
+        randomIndex = Math.floor(Math.random() * available.length);
+      } while (randomIndices.includes(randomIndex));
+      randomIndices.push(available[randomIndex]);
+    }
+    setIndices(randomIndices);
   }
 
-  function onChangeRole(event: ChangeEvent<HTMLSelectElement>) {
-    const { value } = event.target;
-    setRole(value);
-  }
+  const onChangeRole = (event: ChangeEvent<HTMLSelectElement>) => setRole(event.target.value);
 
   return (
     <Layout>
@@ -42,78 +54,27 @@ const Home: NextPage<HomeProps> = ({ smiteGods, roles }) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
         <div className={styles.cards}>
-          <Card>
-            <Card.Front>
-              <Image src="/hexagons.svg" alt="Hexagon Pattern SVG" layout="fill" objectFit="cover" />
-            </Card.Front>
-            <Card.Back>
-              <Card.Background imageURL={current.godCard_URL}>
-                <div className={styles.content}>
-                  <h1>{current.Name}</h1>
-                  <p>{current.Title}</p>
-                  <p>{current.Pantheon}</p>
-                </div>
-              </Card.Background>
-            </Card.Back>
-          </Card>
-          <Card>
-            <Card.Front>
-              <Image src="/hexagons.svg" alt="Hexagon Pattern SVG" layout="fill" objectFit="cover" />
-            </Card.Front>
-            <Card.Back>
-              <Card.Background imageURL={current.godCard_URL}>
-                <div className={styles.content}>
-                  <h1>{current.Name}</h1>
-                  <p>{current.Title}</p>
-                  <p>{current.Pantheon}</p>
-                </div>
-              </Card.Background>
-            </Card.Back>
-          </Card>
-          <Card>
-            <Card.Front>
-              <Image src="/hexagons.svg" alt="Hexagon Pattern SVG" layout="fill" objectFit="cover" />
-            </Card.Front>
-            <Card.Back>
-              <Card.Background imageURL={current.godCard_URL}>
-                <div className={styles.content}>
-                  <h1>{current.Name}</h1>
-                  <p>{current.Title}</p>
-                  <p>{current.Pantheon}</p>
-                </div>
-              </Card.Background>
-            </Card.Back>
-          </Card>
-          <Card>
-            <Card.Front>
-              <Image src="/hexagons.svg" alt="Hexagon Pattern SVG" layout="fill" objectFit="cover" />
-            </Card.Front>
-            <Card.Back>
-              <Card.Background imageURL={current.godCard_URL}>
-                <div className={styles.content}>
-                  <h1>{current.Name}</h1>
-                  <p>{current.Title}</p>
-                  <p>{current.Pantheon}</p>
-                </div>
-              </Card.Background>
-            </Card.Back>
-          </Card>
-          <Card>
-            <Card.Front>
-              <Image src="/hexagons.svg" alt="Hexagon Pattern SVG" layout="fill" objectFit="cover" />
-            </Card.Front>
-            <Card.Back>
-              <Card.Background imageURL={current.godCard_URL}>
-                <div className={styles.content}>
-                  <h1>{current.Name}</h1>
-                  <p>{current.Title}</p>
-                  <p>{current.Pantheon}</p>
-                </div>
-              </Card.Background>
-            </Card.Back>
-          </Card>
+          {indices.map((smiteGodIndex: number) => {
+            const { Name, godCard_URL, Title, Pantheon}: SmiteGod = smiteGods[smiteGodIndex];
+            return (
+              <Card key={Name}>
+                <Card.Front>
+                  <Image src="/hexagons.svg" alt="Hexagon Pattern SVG" layout="fill" objectFit="cover" />
+                </Card.Front>
+                <Card.Back>
+                  <Card.Background imageURL={godCard_URL}>
+                    <div className={styles.content}>
+                      <h1>{Name}</h1>
+                      <p>{Title}</p>
+                      <p>{Pantheon}</p>
+                    </div>
+                  </Card.Background>
+                </Card.Back>
+              </Card>
+            );
+          })}
         </div>
-          <button type="button" onClick={randomize}>Randomize</button>
+          <button type="button" onClick={randomizeAll}>Randomize</button>
           <select name="role" id="role" onChange={onChangeRole} defaultValue={role}>
             {roles.map((role: string) => (
               <option key={role} value={role}>{role}</option>
