@@ -106,7 +106,9 @@ const Home: NextPage<HomeProps> = ({ smiteGods, roles }) => {
           );
         })}
       </div>
-      <button type="button" onClick={randomizeAll}>Randomize</button>
+      <div className={styles.random}>
+        <button type="button" onClick={randomizeAll}>Randomize</button>
+      </div>
     </Layout>
   );
 }

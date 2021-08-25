@@ -19,3 +19,17 @@
   width: 100%;
   height: 100%;
 }
+
+.random {
+  display: flex;
+  justify-content: center;
+}
+
+.random > button {
+  background: #ffaa00;
+  border-radius: 50%;
+  padding: 2em;
+  margin: 1em;
+  border: 1px solid black;
+  box-shadow: 0 0 15px 0 black;
+}
