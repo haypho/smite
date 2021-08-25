@@ -26,10 +26,20 @@
 }
 
 .random > button {
-  background: #ffaa00;
-  border-radius: 50%;
-  padding: 2em;
-  margin: 1em;
-  border: 1px solid black;
-  box-shadow: 0 0 15px 0 black;
+  background: transparent;
+  border-radius: 0.25em;
+  padding: 1em 2em;
+  margin: 2em;
+  outline: none;
+  border: none;
+  box-shadow: 0 0 4px 0 #ff22aa;
+  color: #ff22aa;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.random > button:active {
+  box-shadow: none;
+  background: lightgray;
+  color: white;
 }
