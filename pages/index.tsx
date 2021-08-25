@@ -1,6 +1,6 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
-import { ChangeEvent, useState } from 'react';
+import { ChangeEvent, useEffect, useState } from 'react';
 import Card from '../components/card';
 import Layout from '../components/layout';
 import Select from '../components/select';
@@ -31,43 +31,45 @@ const Home: NextPage<HomeProps> = ({ smiteGods, roles }) => {
   }
   const [cardData, setCardData] = useState<CardData[]>(defaultCardData);
 
+  const lastSmiteGodNames: string[] = cardData.map((data: CardData) => data.smiteGod.name);
+
+  const getAvailableSmiteGodIndicesByRole = (role: string): number[] => smiteGods.reduce((list: number[], smiteGod: SmiteGod, smiteGodIndex: number) => {
+    const isValidRole: boolean = role === "Any" || smiteGod.roles.includes(role);
+    const isNotChosen: boolean = !lastSmiteGodNames.includes(smiteGod.name);
+    if (isValidRole && isNotChosen) {
+      list.push(smiteGodIndex);
+    }
+    return list;
+  }, []);
+
+  const getRandomSmiteGodFrom = (available: number[]): number => {
+    const index: number = Math.floor(Math.random() * available.length);
+    return available[index];
+  }
+
+  const randomize = (cardIndex: number, newRole?: string) => {
+    const role: string = newRole ?? cardData[cardIndex].selectedRole;
+    const available: number[] = getAvailableSmiteGodIndicesByRole(role);
+    const smiteGodIndex: number = getRandomSmiteGodFrom(available);
+    setCardData(cardData.map((data: CardData, index: number) =>
+      index === cardIndex
+      ? { isFlipped: false, smiteGod: smiteGods[smiteGodIndex], selectedRole: role }
+      : data,
+    ));
+  }
+
   const randomizeAll = () => {
     const newCardData: CardData[] = [];
-    const lastSmiteGodNames: string[] = cardData.map((data: CardData) => data.smiteGod.name);
-
-    const getAvailableSmiteGodIndicesByRole = (role: string): number[] => smiteGods.reduce((list: number[], smiteGod: SmiteGod, smiteGodIndex: number) => {
-      const isValidRole: boolean = role === "Any" || smiteGod.roles.includes(role);
-      const isNotPreviouslyChosen: boolean = !lastSmiteGodNames.includes(smiteGod.name);
-      const isNotChosen: boolean = !newCardData.map((data: CardData) => data.smiteGod.name).includes(smiteGod.name);
-      if (isValidRole && isNotPreviouslyChosen && isNotChosen) {
-        list.push(smiteGodIndex);
-      }
-      return list;
-    }, []);
-
-    const getRandomSmiteGodFrom = (available: number[]): number => {
-      const index: number = Math.floor(Math.random() * available.length);
-      return available[index];
-    }
-
     for (let i = 0; i < cardData.length; i++) {
       const role: string = cardData[i].selectedRole;
       const available: number[] = getAvailableSmiteGodIndicesByRole(role);
       const smiteGodIndex: number = getRandomSmiteGodFrom(available);
-      newCardData.push({
-        ...cardData[i],
-        smiteGod: smiteGods[smiteGodIndex],
-        isFlipped: false,
-      }); 
+      newCardData.push({ isFlipped: false, selectedRole: role, smiteGod: smiteGods[smiteGodIndex] });
     }
     setCardData(newCardData);
   }
 
-  const onChangeRole = (cardIndex: number) => (selectedRole: string) => setCardData(cardData.map((data: CardData, index: number) =>
-    index === cardIndex
-    ? { ...data, selectedRole }
-    : data
-  ));
+  const onChangeRole = (cardIndex: number) => (selectedRole: string) => randomize(cardIndex, selectedRole);
 
   const flip = (cardIndex: number) => () => setCardData(cardData.map((data: CardData, index: number) =>
     index === cardIndex
