@@ -1,5 +1,5 @@
 import React, { ReactNode } from "react";
-import styles from "../../styles/card.module.css";
+import styles from "../../styles/components/card.module.css";
 
 export interface CardBackProps {
   children?: ReactNode;

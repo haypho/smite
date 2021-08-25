@@ -29,6 +29,7 @@
   backface-visibility: hidden;
   border-radius: 0.25em;
   background: black;
+  overflow: hidden;
 }
 
 .back {

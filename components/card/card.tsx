@@ -1,5 +1,5 @@
 import React, { ReactNode, useState } from "react";
-import styles from "../../styles/card.module.css";
+import styles from "../../styles/components/card.module.css";
 import CardBack, { CardBackProps } from "./card.back";
 import CardBackground, { CardBackgroundProps } from "./card.background";
 import CardFront, { CardFrontProps } from "./card.front";

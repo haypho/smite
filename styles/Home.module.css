@@ -7,10 +7,15 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100%;
   margin: 1em 0;
 }
 
 .cards .content {
   padding: 1em;
+}
+
+.cards .image {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
 }
