@@ -1,7 +1,7 @@
 import { NextPage } from "next";
 import React from "react";
 import { SmiteGod } from "../../models";
-import { SmiteGodsService } from "../../services/smite/smiteGods.service";
+import { SmiteService } from "../../services/smite/smite.service";
 
 export interface GodListPageProps {
   gods: SmiteGod[];
@@ -10,7 +10,7 @@ export interface GodListPageProps {
 const GodListPage: NextPage<GodListPageProps> = ({gods}) => (
   <div>
     {gods.map((god: SmiteGod) => (
-        <span key={god.Name}>{god.Name}</span>
+        <span key={god.name}>{god.name}</span>
     ))}
   </div>
 );
@@ -18,7 +18,7 @@ const GodListPage: NextPage<GodListPageProps> = ({gods}) => (
 export default GodListPage;
 
 export async function getStaticProps() {
-  const gods: SmiteGod[] = await SmiteGodsService.getGods();
+  const gods: SmiteGod[] = SmiteService.getGods();
   return {
     props: {
       gods,
