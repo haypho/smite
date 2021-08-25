@@ -94,7 +94,7 @@ const Home: NextPage<HomeProps> = ({ smiteGods, roles }) => {
                 <Card.Back>
                   <Card.Background imageURL={godCardURL}>
                     <div className={styles.content}>
-                      <h1>{name}</h1>
+                      <h2>{name}</h2>
                       <p>{title}</p>
                       <p>{pantheon}</p>
                     </div>
