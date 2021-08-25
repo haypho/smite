@@ -1,10 +1,10 @@
 import md5 from "md5";
-import { SmiteMethod } from "../../models/smite.method";
-import { DEVELOPER_ID, AUTH_KEY } from "../../config";
-import { SMITE_BASE_URL, SMITE_CONTENT_TYPE, SMITE_SESSION_TTL_IN_MINUTES } from "../../constants/smite.constants";
-import { SmiteGod, SmiteGodData } from "../../models";
-import smiteGods from "../../assets/gods.json";
-import { SmiteLanguageCode } from "../../models/smite.languageCode";
+import { SmiteMethod } from "../models/smite.method";
+import { DEVELOPER_ID, AUTH_KEY } from "../config";
+import { SMITE_BASE_URL, SMITE_CONTENT_TYPE, SMITE_SESSION_TTL_IN_MINUTES } from "../constants/smite.constants";
+import { SmiteGod, SmiteGodData } from "../models";
+import smiteGods from "../assets/gods.json";
+import { SmiteLanguageCode } from "../models/smite.languageCode";
 
 /**
  * The core service for the Smite API.

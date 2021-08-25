@@ -1,7 +1,7 @@
 import { NextPage } from "next";
 import React from "react";
 import { SmiteGod } from "../../models";
-import { SmiteService } from "../../services/smite/smite.service";
+import { SmiteService } from "../../services/smite.service";
 
 export interface GodListPageProps {
   gods: SmiteGod[];

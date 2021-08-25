@@ -5,7 +5,7 @@ import Card from '../components/card';
 import Layout from '../components/layout';
 import Select from '../components/select';
 import { SmiteGod } from '../models/smite.god';
-import { SmiteService } from '../services/smite/smite.service';
+import { SmiteService } from '../services/smite.service';
 import styles from '../styles/Home.module.css'
 
 interface CardData {
