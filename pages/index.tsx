@@ -34,10 +34,11 @@ const Home: NextPage<HomeProps> = ({ smiteGods, roles }) => {
 
   const lastSmiteGodNames: string[] = cardData.map((data: CardData) => data.smiteGod.name);
 
-  const getAvailableSmiteGodIndicesByRole = (role: string): number[] => smiteGods.reduce((list: number[], smiteGod: SmiteGod, smiteGodIndex: number) => {
+  const getAvailableSmiteGodIndicesByRole = (role: string, excludedNames?: string[]): number[] => smiteGods.reduce((list: number[], smiteGod: SmiteGod, smiteGodIndex: number) => {
     const isValidRole: boolean = role === "Any" || smiteGod.roles.includes(role);
     const isNotChosen: boolean = !lastSmiteGodNames.includes(smiteGod.name);
-    if (isValidRole && isNotChosen) {
+    const isNotExcluded: boolean = !excludedNames?.includes(smiteGod.name);
+    if (isValidRole && isNotChosen && isNotExcluded) {
       list.push(smiteGodIndex);
     }
     return list;
@@ -63,7 +64,8 @@ const Home: NextPage<HomeProps> = ({ smiteGods, roles }) => {
     const newCardData: CardData[] = [];
     for (let i = 0; i < cardData.length; i++) {
       const role: string = cardData[i].selectedRole;
-      const available: number[] = getAvailableSmiteGodIndicesByRole(role);
+      const excludedNames: string[] = newCardData.map((data: CardData) => data.smiteGod.name);
+      const available: number[] = getAvailableSmiteGodIndicesByRole(role, excludedNames);
       const smiteGodIndex: number = getRandomSmiteGodFrom(available);
       newCardData.push({ isFlipped: false, selectedRole: role, smiteGod: smiteGods[smiteGodIndex] });
     }
