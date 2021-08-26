@@ -4,6 +4,7 @@
   height: 300px;
   perspective: 1000px;
   margin: 0.5em;
+  animation: shake 0.5s;
 }
 
 .card {
@@ -64,3 +65,17 @@
   z-index: 1;
 }
 
+@keyframes shake {
+  10%, 90% {
+    transform: rotateZ(-1deg);
+  }
+  20%, 80% {
+    transform: rotateZ(2deg);
+  }
+  30%, 50%, 70% {
+    transform: rotateZ(-4deg);
+  }
+  40%, 60% {
+    transform: rotateZ(4deg);
+  }
+}
