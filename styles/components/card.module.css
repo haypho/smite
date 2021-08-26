@@ -16,10 +16,12 @@
   color: white;
   transition: transform 0.8s;
   transform-style: preserve-3d;
+  cursor: pointer;
 }
 
 .flipped {
   transform: rotateY(180deg);
+  cursor: default;
 }
 
 .front, .back {
