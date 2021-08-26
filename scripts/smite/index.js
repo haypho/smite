@@ -1,7 +1,7 @@
 import path from "path";
 import dotenv from "dotenv";
 import inquirer from "inquirer";
-import { Session } from "./session";
+import { SmiteGods } from "./smite.gods";
 
 dotenv.config({
   path: path.resolve(__dirname, "../../.env.development.local"),
@@ -27,7 +27,8 @@ const main = async () => {
       choices: ["Smite Gods"],
     }
   ]);
-  const sessionId = await Session.getAsync();
+  const gods = await SmiteGods.fetchAll();
+  SmiteGods.persist(gods);
 }
 
 main();
