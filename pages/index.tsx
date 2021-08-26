@@ -92,7 +92,7 @@ const Home: NextPage<HomeProps> = ({ smiteGods, roles }) => {
             <div key={`${name}-${cardIndex}`}>
               <Card flipped={isFlipped} onClick={flip(cardIndex)}>
                 <Card.Front>
-                  <img className={styles.image} src={`${BASE_URL}/hexagons.svg`} alt="Hexagon Pattern SVG" />
+                  <img className={styles.image} src={`${BASE_URL}/hexagons.svg`} alt="Hexagon Pattern SVG" draggable={false} />
                 </Card.Front>
                 <Card.Back>
                   <Card.Background imageURL={godCardURL}>
