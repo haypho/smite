@@ -9,7 +9,7 @@
     "export": "next export",
     "start": "next start",
     "lint": "next lint",
-    "update:gods": "node -r esm scripts/updateSmiteGods.js",
+    "smite": "node -r esm scripts/smite/index.js",
     "predeploy": "npm run build && npm run export",
     "deploy": "node -r esm scripts/deploy.js"
   },
@@ -28,6 +28,7 @@
     "eslint-config-next": "11.1.0",
     "esm": "^3.2.25",
     "gh-pages": "^3.2.3",
+    "inquirer": "^8.1.2",
     "typescript": "4.3.5"
   }
 }
