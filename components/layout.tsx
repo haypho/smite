@@ -19,7 +19,7 @@ const Layout: React.FC<LayoutProps> = ({children}) => (
     </main>
     <footer className={styles.footer}>
       <div className={styles.content}>
-        Hayden Phothong &copy; 2021
+        Data provided by Hi-Rez Studios. &copy; Hi-Rez Studios, Inc. All rights reserved.
       </div>
     </footer>
   </div>
