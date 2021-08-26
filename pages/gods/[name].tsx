@@ -15,8 +15,12 @@ const GodPage: NextPage<GodPageProps> = ({god}) => (
 
 export default GodPage;
 
+const formatGodName = (name: string): string => name.split(" ").join("-").toLowerCase();
+
 export const getStaticProps: GetStaticProps<GodPageProps> = async (context: GetStaticPropsContext) => {
-  const god: SmiteGod | undefined = SmiteService.getGods().find((smiteGod: SmiteGod) => smiteGod.name === context.params?.name);
+  const god: SmiteGod | undefined = SmiteService.getGods().find((smiteGod: SmiteGod) =>
+    formatGodName(smiteGod.name) === context.params?.name
+  );
   return {
     props: {
       god,
@@ -27,7 +31,7 @@ export const getStaticProps: GetStaticProps<GodPageProps> = async (context: GetS
 export const getStaticPaths: GetStaticPaths = async () => {
   const paths = SmiteService.getGods().map((god: SmiteGod) => ({
     params: {
-      name: god.name,
+      name: formatGodName(god.name),
     },
   }));
   return {
