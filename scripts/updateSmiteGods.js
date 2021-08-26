@@ -5,7 +5,7 @@ const dotenv = require('dotenv');
 const axios = require('axios');
 
 dotenv.config({
-  path: path.resolve(__dirname, '../../.env.development.local'),
+  path: path.resolve(__dirname, '../.env.development.local'),
 });
 
 const DEVELOPER_ID = process.env.DEVELOPER_ID;
@@ -54,7 +54,7 @@ async function getGods() {
 }
 
 async function main() {
-  const filepath = path.resolve(__dirname, '../../assets/gods.json');
+  const filepath = path.resolve(__dirname, '../assets/gods.json');
   const gods = await getGods();
   fs.writeFileSync(filepath, JSON.stringify(gods, undefined, 2), { encoding: 'utf-8' });
 }
