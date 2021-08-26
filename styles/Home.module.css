@@ -5,6 +5,7 @@
 
 .cards {
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   align-items: center;
   margin: 1em 0;
@@ -12,6 +13,10 @@
 
 .cards .content {
   padding: 1em;
+}
+
+.cards select {
+  margin-bottom: 3em;
 }
 
 .cards .image {
@@ -29,7 +34,7 @@
   background: transparent;
   border-radius: 0.25em;
   padding: 1em 2em;
-  margin: 2em;
+  margin: 1em;
   outline: none;
   border: none;
   box-shadow: 0 0 4px 0 #ff22aa;

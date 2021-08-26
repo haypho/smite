@@ -91,7 +91,7 @@ const Home: NextPage<HomeProps> = ({ smiteGods, roles }) => {
         {cardData.map(({ smiteGod, isFlipped, selectedRole }: CardData, cardIndex: number) => {
           const { name, godCardURL, title, pantheon}: SmiteGod = smiteGod;
           return (
-            <div key={`${name}-${cardIndex}`}>
+            <div className={styles.cardColumn} key={`${name}-${cardIndex}`}>
               <Card flipped={isFlipped} onClick={flip(cardIndex)}>
                 <Card.Front>
                   <img className={styles.image} src={`${BASE_URL}/hexagons.svg`} alt="Hexagon Pattern SVG" draggable={false} />
