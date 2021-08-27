@@ -1,1 +1,1 @@
-export { default as SettingsBar } from "./SettingsBar";
+export { default as SettingsBar } from "./settingsBar";

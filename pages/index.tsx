@@ -90,7 +90,7 @@ const Home: NextPage<HomeProps> = ({ smiteGods, roles }) => {
         <meta name="description" content="Author: Hayden Phothong" />
         <link rel="icon" href={`${BASE_URL}/favicon.ico`} />
       </Head>
-      <SettingsBar />
+      {/* <SettingsBar /> */}
       <div className={styles.cards}>
         {cardData.map(({ smiteGod, isFlipped, selectedRole }: CardData, cardIndex: number) => {
           const { name, godCardURL, title, pantheon}: SmiteGod = smiteGod;
