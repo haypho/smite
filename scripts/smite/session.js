@@ -6,7 +6,7 @@ import { SignatureBuilder, SmiteMethod, SmiteContentType, getTimestampUTC, Smite
 
 export class Session {
   static environmentKey = "SESSION_ID";
-  static id = "11DA4B0A2D624B6D8E941075F0B7DD5A";
+  static id;
 
   static _fetchSession = async () => {
     const developerId = process.env.DEVELOPER_ID;
@@ -56,16 +56,16 @@ export class Session {
     const timestamp = getTimestampUTC();
     const url = `${SmiteBaseURL}/${SmiteMethod.TEST_SESSION}${SmiteContentType}/${developerId}/${signature}/${sessionId}/${timestamp}`;
     const res = await axios.get(url);
-    return !res.data.startsWith("Failed");
+    return res.data.includes("Success");
   }
 
   static getAsync = async () => {
     if (Session.id) {
-      if (Session._isSessionIdValid(Session.id)) {
+      if (await Session._isSessionIdValid(Session.id)) {
         return Session.id;
       }
     } else if (process.env[Session.environmentKey]) {
-      if (Session._isSessionIdValid(process.env[Session.environmentKey])) {
+      if (await Session._isSessionIdValid(process.env[Session.environmentKey])) {
         return process.env[Session.environmentKey];
       }
     }
