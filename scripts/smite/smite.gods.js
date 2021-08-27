@@ -29,9 +29,6 @@ export class SmiteGods {
 
   static persist = (gods) => {
     const assetFilepath = path.resolve(__dirname, "../../assets/gods.json");
-    if (!fs.existsSync(assetFilepath)) {
-      throw new Error(`persistGods > unable to find asset filepath: ${assetFilepath}`);
-    }
     fs.writeFileSync(assetFilepath, JSON.stringify(gods, undefined, 2), { encoding: "utf-8" });
     console.log("Persisted gods to:", assetFilepath);
   }
