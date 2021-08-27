@@ -1,6 +1,6 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
-import { ChangeEvent, useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import Card from '../components/card';
 import Layout from '../components/layout';
 import Select from '../components/select';
@@ -8,6 +8,9 @@ import { BASE_URL } from '../config';
 import { SmiteGod } from '../models/smite.god';
 import { SmiteService } from '../services/smite.service';
 import styles from '../styles/Home.module.css'
+import { SettingsBar } from "../components/settings-bar";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faRandom } from '@fortawesome/free-solid-svg-icons';
 
 interface CardData {
   smiteGod: SmiteGod;
@@ -87,6 +90,7 @@ const Home: NextPage<HomeProps> = ({ smiteGods, roles }) => {
         <meta name="description" content="Author: Hayden Phothong" />
         <link rel="icon" href={`${BASE_URL}/favicon.ico`} />
       </Head>
+      <SettingsBar />
       <div className={styles.cards}>
         {cardData.map(({ smiteGod, isFlipped, selectedRole }: CardData, cardIndex: number) => {
           const { name, godCardURL, title, pantheon}: SmiteGod = smiteGod;
@@ -112,7 +116,9 @@ const Home: NextPage<HomeProps> = ({ smiteGods, roles }) => {
         })}
       </div>
       <div className={styles.random}>
-        <button type="button" onClick={randomizeAll}>Randomize</button>
+        <button type="button" onClick={randomizeAll}>
+          <FontAwesomeIcon icon={faRandom} className={styles.icon}/>
+        </button>
       </div>
     </Layout>
   );

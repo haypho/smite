@@ -31,6 +31,9 @@
 }
 
 .random > button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background: transparent;
   border-radius: 0.25em;
   padding: 1em 2em;
@@ -38,14 +41,37 @@
   outline: none;
   border: none;
   box-shadow: 0 0 4px 0 #ff22aa;
-  color: #ff22aa;
   font-size: 1.5rem;
   font-weight: 700;
   cursor: pointer;
+}
+
+.icon {
+  color: #ff22aa;
+  width: 32px;
+  height: 32px;
 }
 
 .random > button:active {
   box-shadow: none;
   background: lightgray;
   color: white;
+}
+
+@media (max-width: 680px) {
+  .random > button {
+    padding: 0;
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    background: #ff22aa;
+    box-shadow: 0 2px 4px 0 black;
+  }
+
+  .icon {
+    color: white;
+  }
 }
