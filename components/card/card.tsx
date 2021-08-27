@@ -1,4 +1,4 @@
-import React, { ReactNode, useState } from "react";
+import React, { KeyboardEvent, ReactNode, useState } from "react";
 import styles from "../../styles/components/card.module.css";
 import CardBack, { CardBackProps } from "./card.back";
 import CardBackground, { CardBackgroundProps } from "./card.background";
@@ -18,8 +18,14 @@ export interface CardProps {
 
 const Card: React.FC<CardProps> & StaticCard = ({ children, flipped, onClick }) => {
   const flippedStyle = flipped ? styles.flipped : "";
+  const onPressEnter = (event: KeyboardEvent<HTMLDivElement>) => {
+    if (event.code === "Enter") {
+      onClick?.();
+    }
+  }
+
   return (
-    <div className={styles.wrapper} onClick={onClick}>
+    <div className={styles.wrapper} onClick={onClick} tabIndex={0} onKeyDown={onPressEnter}>
       <div className={`${styles.card} ${flippedStyle}`}>
         {children}
       </div>
