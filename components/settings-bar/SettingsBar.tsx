@@ -7,9 +7,13 @@ const SettingsBar: React.FC = () => {
   const onClickFilter = () => alert("clicked filter");
   return (
     <div className={styles.settingsBar}>
-      <FontAwesomeIcon icon={faCog} onClick={onClickFilter} className={styles.settingsIcon} />
+      <FontAwesomeIcon
+        icon={faCog}
+        onClick={onClickFilter}
+        className={styles.settingsIcon}
+      />
     </div>
   );
-}
+};
 
 export default SettingsBar;

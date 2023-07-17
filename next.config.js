@@ -1,9 +1,9 @@
 /** @type {import('next').NextConfig} */
 module.exports = {
   reactStrictMode: true,
+  output: "export",
   images: {
-    domains: ['webcdn.hirezstudios.com'],
+    domains: ["webcdn.hirezstudios.com"],
   },
-  basePath: process.env.BASE_PATH ?? "",
-  assetPrefix: process.env.ASSET_PREFIX ?? "",
-}
+  basePath: "/smite",
+};
