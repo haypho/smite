@@ -1,6 +1,8 @@
 name: "Continuous Integration / Deployment"
 
 on:
+  schedule:
+    - cron: "35 3 * * * "
   pull_request:
   push:
     branches: ["main"]

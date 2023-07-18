@@ -3,6 +3,8 @@
  */
 export const SMITE_BASE_URL = "https://api.smitegame.com/smiteapi.svc";
 
+export const SMITE_SESSION_TTL_IN_MILLIS = 15 * 60 * 1_000;
+
 /**
  * The default content type to use for each Smite API response
  */
