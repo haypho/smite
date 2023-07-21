@@ -1,10 +1,20 @@
 import React, { FC } from "react";
-import { Box, Card, CardContent, CardMedia, Typography } from "@mui/material";
+import { Box, Card, CardContent, Typography } from "@mui/material";
+import styled from "@emotion/styled";
 import { SmiteGod } from "../../../api/smite/types";
 
 export type SmiteGodCardsProps = {
   smiteGods: SmiteGod[];
 };
+
+const SmiteGodCard = styled(Card)`
+  width: 300px;
+  height: 400px;
+  background-position-x: center;
+  background-position-y: top;
+  background-repeat: no-repeat;
+  background-size: cover;
+`;
 
 export const SmiteGodCards: FC<SmiteGodCardsProps> = ({ smiteGods }) => {
   return (
@@ -16,26 +26,20 @@ export const SmiteGodCards: FC<SmiteGodCardsProps> = ({ smiteGods }) => {
       gap={5}
     >
       {smiteGods.map((god) => (
-        <Card
+        <SmiteGodCard
           key={god.id}
           sx={{
-            width: 300,
-            height: 400,
-            backgroundImage: `URL(${god.godCard_URL})`,
-            backgroundPositionX: "center",
-            backgroundPositionY: "top",
-            backgroundRepeat: "no-repeat",
-            backgroundSize: "cover",
+            backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${god.godCard_URL})`,
           }}
         >
           <CardContent>
-            <Typography gutterBottom variant="h4">
+            <Typography gutterBottom variant="h4" color="white">
               {god.Name}
             </Typography>
-            <Typography>{god.Pantheon}</Typography>
-            <Typography>{god.Title}</Typography>
+            <Typography color="white">{god.Pantheon}</Typography>
+            <Typography color="white">{god.Title}</Typography>
           </CardContent>
-        </Card>
+        </SmiteGodCard>
       ))}
     </Box>
   );

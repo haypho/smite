@@ -4,13 +4,7 @@ import { AppDispatch } from "../../../stores/store";
 import { useDispatch } from "react-redux";
 import randomizerSlice from "../stores/randomizer.slice";
 
-export type RandomizerControlsProps = {
-  onRandomize?(): void;
-};
-
-export const RandomizerControls: FC<RandomizerControlsProps> = ({
-  onRandomize,
-}) => {
+export const RandomizerControls: FC = () => {
   const dispatch: AppDispatch = useDispatch();
 
   return (
@@ -35,9 +29,6 @@ export const RandomizerControls: FC<RandomizerControlsProps> = ({
             )
           }
         />
-        <Button variant="contained" onClick={onRandomize}>
-          <Typography>Generate</Typography>
-        </Button>
       </Box>
     </Container>
   );

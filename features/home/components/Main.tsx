@@ -1,4 +1,11 @@
-import { Container, AppBar, Toolbar, Typography, Box } from "@mui/material";
+import {
+  Container,
+  AppBar,
+  Toolbar,
+  Typography,
+  Box,
+  Button,
+} from "@mui/material";
 import React, { FC } from "react";
 import { RandomizerControls } from "../../randomizer";
 import styled from "@emotion/styled";
@@ -16,12 +23,15 @@ export const Main: FC = () => {
       <AppBar position="static">
         <Container>
           <Toolbar>
-            <Typography>Smite Randomizer</Typography>
+            <Typography sx={{ flexGrow: 1 }}>Smite Randomizer</Typography>
+            <Button color="inherit" variant="outlined" onClick={randomize}>
+              Shuffle
+            </Button>
           </Toolbar>
         </Container>
       </AppBar>
       <Container>
-        <RandomizerControls onRandomize={randomize} />
+        <RandomizerControls />
         <SmiteGodCards smiteGods={smiteGods} />
       </Container>
     </MainContainer>
