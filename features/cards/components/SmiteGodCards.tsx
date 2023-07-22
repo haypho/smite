@@ -1,11 +1,8 @@
-import React, { FC } from "react";
+import React from "react";
 import { Box, Card, CardContent, Typography } from "@mui/material";
 import styled from "@emotion/styled";
-import { SmiteGod } from "../../../api/smite/types";
-
-export type SmiteGodCardsProps = {
-  smiteGods: SmiteGod[];
-};
+import { useSelector } from "react-redux";
+import { RootState } from "../../../stores/store";
 
 const SmiteGodCard = styled(Card)`
   width: 300px;
@@ -16,7 +13,11 @@ const SmiteGodCard = styled(Card)`
   background-size: cover;
 `;
 
-export const SmiteGodCards: FC<SmiteGodCardsProps> = ({ smiteGods }) => {
+export const SmiteGodCards = () => {
+  const randomGods = useSelector(
+    (state: RootState) => state.randomizer.randomGods,
+  );
+
   return (
     <Box
       display="flex"
@@ -25,7 +26,7 @@ export const SmiteGodCards: FC<SmiteGodCardsProps> = ({ smiteGods }) => {
       flexWrap="wrap"
       gap={5}
     >
-      {smiteGods.map((god) => (
+      {randomGods.map((god) => (
         <SmiteGodCard
           key={god.id}
           sx={{
@@ -33,11 +34,20 @@ export const SmiteGodCards: FC<SmiteGodCardsProps> = ({ smiteGods }) => {
           }}
         >
           <CardContent>
-            <Typography gutterBottom variant="h4" color="white">
+            <Typography
+              gutterBottom
+              variant="h4"
+              color="white"
+              fontWeight={700}
+            >
               {god.Name}
             </Typography>
-            <Typography color="white">{god.Pantheon}</Typography>
-            <Typography color="white">{god.Title}</Typography>
+            <Typography color="white" fontWeight={700}>
+              {god.Pantheon}
+            </Typography>
+            <Typography color="white" fontWeight={700}>
+              {god.Title}
+            </Typography>
           </CardContent>
         </SmiteGodCard>
       ))}

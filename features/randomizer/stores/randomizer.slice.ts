@@ -1,19 +1,20 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
+import { SmiteGod } from "../../../api/smite/types";
 
 export type RandomizerState = {
-  cardCount: number;
+  randomGods: SmiteGod[];
 };
 
 const initialState: RandomizerState = {
-  cardCount: 3,
+  randomGods: [],
 };
 
 export default createSlice({
   name: "randomizerSlice",
   initialState,
   reducers: {
-    setCardCount: (state, action: PayloadAction<number>) => {
-      state.cardCount = action.payload;
+    setRandomGods: (state, action: PayloadAction<SmiteGod[]>) => {
+      state.randomGods = action.payload;
     },
   },
 });
