@@ -7,17 +7,17 @@ import {
   Button,
 } from "@mui/material";
 import React, { FC } from "react";
-import { RandomizerControls } from "../../randomizer";
 import styled from "@emotion/styled";
 import { SmiteGodCards } from "../../cards";
-import { useRandomGods } from "../../randomizer/hooks/useRandomGods";
+import { FilterAutocomplete } from "../../filter";
+import { useGodRandomizer } from "../../randomizer";
 
 const MainContainer = styled.main`
   flex: 1;
 `;
 
 export const Main: FC = () => {
-  const { smiteGods, randomize } = useRandomGods();
+  const randomize = useGodRandomizer();
   return (
     <MainContainer>
       <AppBar position="static">
@@ -31,8 +31,8 @@ export const Main: FC = () => {
         </Container>
       </AppBar>
       <Container>
-        <RandomizerControls />
-        <SmiteGodCards smiteGods={smiteGods} />
+        <FilterAutocomplete />
+        <SmiteGodCards />
       </Container>
     </MainContainer>
   );
