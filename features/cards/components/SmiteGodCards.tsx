@@ -21,7 +21,8 @@ export const SmiteGodCards = () => {
   return (
     <Box
       display="flex"
-      justifyContent="space-around"
+      flex={1}
+      justifyContent="center"
       marginTop={5}
       flexWrap="wrap"
       gap={5}

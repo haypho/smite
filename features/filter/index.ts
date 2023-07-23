@@ -1,2 +1,2 @@
-export * from "./components/FilterAutocomplete";
-export * from "./hooks/useFilteredGods";
+export * from "./components/FilterSidebar";
+export * from "./components/FilterDrawer";
