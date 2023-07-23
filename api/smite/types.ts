@@ -1,3 +1,5 @@
+import { Role } from "../../features/filter/types/filterTypes";
+
 export type MenuItem = {
   description: string;
   value: string;
@@ -19,10 +21,6 @@ export type Ability = {
   Summary: string;
   URL: string;
 };
-
-export type Pantheon = "Greek";
-
-export type Role = "Warrior";
 
 export type SmiteGod = {
   Ability1: string;
@@ -70,13 +68,13 @@ export type SmiteGod = {
   ManaPerLevel: number;
   Name: string;
   OnFreeRotation: "" | "true";
-  Pantheon: Pantheon;
+  Pantheon: string;
   PhysicalPower: number;
   PhysicalPowerPerLevel: number;
   PhysicalProtection: number;
   PhysicalProtectionPerLevel: number;
   Pros: string;
-  Roles: Role;
+  Roles: string;
   Speed: number;
   Title: string;
   /** @example "Melee, Physical" */
