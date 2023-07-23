@@ -1,8 +1,7 @@
 import { FormControl, FormLabel, Slider } from "@mui/material";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch, RootState } from "../../../../stores/store";
-import filtersSlice from "../../stores/filters.slice";
+import { AppDispatch, RootState, filtersSlice } from "../../stores";
 
 export const TeamSizeFilter = () => {
   const dispatch: AppDispatch = useDispatch();

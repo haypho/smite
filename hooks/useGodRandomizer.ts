@@ -1,15 +1,13 @@
 import { useDispatch, useSelector } from "react-redux";
-import { SmiteGod } from "../../../api/smite/types";
-import { AppDispatch, RootState } from "../../../stores/store";
-import randomizerSlice from "../stores/randomizer.slice";
+import { AppDispatch, RootState, randomizerSlice } from "../stores";
 import { useCallback, useEffect } from "react";
-import { useGodsQuery } from "../../../hooks/api/smite/useGodsQuery";
-import { Role, TeamBalance } from "../../filter/types/filterTypes";
-import { getRandomIntWithInclusiveRange } from "../utils/integerUtils";
+import { getRandomIntWithInclusiveRange } from "../utils/integer.utils";
+import { SmiteGod } from "../api/smite/types";
+import { Role, TeamBalance } from "../types";
+import { useFilteredGods } from "./useFilteredGods";
 
 export const useGodRandomizer = () => {
   const dispatch: AppDispatch = useDispatch();
-  const { data } = useGodsQuery();
   const teams = useSelector((state: RootState) => state.filters.teams);
   const teamSize = useSelector((state: RootState) => state.filters.teamSize);
   const teamBalance = useSelector(
@@ -17,10 +15,7 @@ export const useGodRandomizer = () => {
   );
   const roles = useSelector((state: RootState) => state.filters.roles);
 
-  const availableGods = (data ?? []).filter(
-    (god) =>
-      roles.length <= 0 || roles.some((role) => god.Roles.includes(role)),
-  );
+  const availableGods = useFilteredGods();
 
   const randomize = useCallback(() => {
     if (!availableGods) return;

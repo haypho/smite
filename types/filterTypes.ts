@@ -11,3 +11,8 @@ export enum Role {
   MAGE = "Mage",
   WARRIOR = "Warrior",
 }
+
+export enum AbilityShape {
+  CONE = "Cone",
+  CIRCLE = "Circle",
+}

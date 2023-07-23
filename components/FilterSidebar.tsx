@@ -4,6 +4,7 @@ import { TeamsFilter } from "./filters/TeamsFilter";
 import { TeamSizeFilter } from "./filters/TeamSizeFilter";
 import { TeamBalanceFilter } from "./filters/TeamBalanceFilter";
 import { RoleFilter } from "./filters/RoleFilter";
+import { AbilityTypeFilter } from "./filters/AbilityTypeFilter";
 
 export const FilterSidebar = () => {
   return (
@@ -20,6 +21,7 @@ export const FilterSidebar = () => {
       <TeamSizeFilter />
       <TeamBalanceFilter />
       <RoleFilter />
+      <AbilityTypeFilter />
     </Box>
   );
 };

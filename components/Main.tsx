@@ -11,13 +11,13 @@ import {
 } from "@mui/material";
 import React from "react";
 import styled from "@emotion/styled";
-import { SmiteGodCards } from "../../cards";
-import { FilterDrawer, FilterSidebar } from "../../filter";
-import { useGodRandomizer } from "../../randomizer";
 import { FilterAlt } from "@mui/icons-material";
-import filtersSlice from "../../filter/stores/filters.slice";
-import { AppDispatch } from "../../../stores/store";
 import { useDispatch } from "react-redux";
+import { AppDispatch, filtersSlice } from "../stores";
+import { useGodRandomizer } from "../hooks/useGodRandomizer";
+import { FilterSidebar } from "./FilterSidebar";
+import { SmiteGodCards } from "./SmiteGodCards";
+import { FilterDrawer } from "./FilterDrawer";
 
 const MainContainer = styled.main`
   flex: 1;

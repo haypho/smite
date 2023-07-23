@@ -2,7 +2,7 @@ import React from "react";
 import { Box, Card, CardContent, Typography } from "@mui/material";
 import styled from "@emotion/styled";
 import { useSelector } from "react-redux";
-import { RootState } from "../../../stores/store";
+import { RootState } from "../stores";
 
 const SmiteGodCard = styled(Card)`
   width: 300px;

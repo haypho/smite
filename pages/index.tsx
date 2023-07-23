@@ -2,7 +2,8 @@ import type { NextPage } from "next";
 import Head from "next/head";
 import React, { useState } from "react";
 import { getGods } from "../api/smite/getGods";
-import { Main } from "../features/home";
+import { Main } from "../components/Main";
+import { Footer } from "../components/Footer";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import {
   Hydrate,
@@ -18,7 +19,6 @@ import {
 import { createSession } from "../api/smite/createSession";
 import { Provider } from "react-redux";
 import { store } from "../stores/store";
-import { Footer } from "../features/home/components/Footer";
 import styled from "@emotion/styled";
 
 const MinHeightWrapper = styled.div`

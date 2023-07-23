@@ -1,5 +1,5 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import { SmiteGod } from "../../../api/smite/types";
+import { SmiteGod } from "../api/smite/types";
 
 export type RandomizerState = {
   randomGods: SmiteGod[];
@@ -9,7 +9,7 @@ const initialState: RandomizerState = {
   randomGods: [],
 };
 
-export default createSlice({
+export const randomizerSlice = createSlice({
   name: "randomizerSlice",
   initialState,
   reducers: {
