@@ -17,8 +17,12 @@ export const useGodRandomizer = () => {
       new URL("../utils/web-worker/generateRandomGods", import.meta.url),
     );
 
-    worker.onmessage = (event: MessageEvent<SmiteGod[]>) => {
-      dispatch(randomizerSlice.actions.setRandomGods(event.data));
+    worker.onmessage = (
+      event: MessageEvent<{ randomGods: SmiteGod[]; results: number }>,
+    ) => {
+      const { randomGods, results } = event.data;
+      dispatch(randomizerSlice.actions.setRandomGods(randomGods));
+      dispatch(randomizerSlice.actions.setResults(results));
       worker.terminate();
     };
 

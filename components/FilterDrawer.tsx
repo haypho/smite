@@ -18,6 +18,7 @@ import { AbilityTypeFilter } from "./filters/AbilityTypeFilter";
 
 export const FilterDrawer = () => {
   const dispatch: AppDispatch = useDispatch();
+  const results = useSelector((state: RootState) => state.randomizer.results);
   const isDrawerOpen = useSelector(
     (state: RootState) => state.filters.isDrawerOpen,
   );
@@ -32,7 +33,7 @@ export const FilterDrawer = () => {
       <AppBar position="sticky">
         <Toolbar>
           <Typography variant="h5" sx={{ flexGrow: 1 }}>
-            Filters
+            Filters&nbsp;({results} {results === 1 ? "result" : "results"})
           </Typography>
           <IconButton
             color="inherit"
