@@ -56,15 +56,16 @@ export const SmiteGodCards = () => {
         ))}
       </Box>
     ) : (
-      <Box
-        position="absolute"
-        top="50%"
-        left="50%"
-      >
-        <Typography color="gray">
-          No results found.
-        </Typography>
-      </Box>
+      <Container sx={{ height: 'calc(90vh - 64px)' }}>
+        <Box
+          display="flex"
+          alignItems="center"
+          justifyContent="center"
+          height="100%"
+        >
+          <Typography color="gray">No results found.</Typography>
+        </Box>
+      </Container>
     )
   );
 };
