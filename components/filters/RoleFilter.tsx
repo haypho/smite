@@ -6,9 +6,8 @@ import {
   FormLabel,
 } from "@mui/material";
 import React, { ChangeEvent } from "react";
-import { AppDispatch, RootState } from "../../../../stores/store";
+import { AppDispatch, RootState, filtersSlice } from "../../stores";
 import { useDispatch, useSelector } from "react-redux";
-import filtersSlice from "../../stores/filters.slice";
 import { Role } from "../../types/filterTypes";
 
 export const RoleFilter = () => {
@@ -35,7 +34,7 @@ export const RoleFilter = () => {
             key={role}
             control={
               <Checkbox
-                defaultChecked={currentRoles.includes(role)}
+                checked={currentRoles.includes(role)}
                 onChange={updateRole(role)}
               />
             }

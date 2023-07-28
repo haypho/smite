@@ -4,6 +4,7 @@ import { TeamsFilter } from "./filters/TeamsFilter";
 import { TeamSizeFilter } from "./filters/TeamSizeFilter";
 import { TeamBalanceFilter } from "./filters/TeamBalanceFilter";
 import { RoleFilter } from "./filters/RoleFilter";
+import { AbilityTypeFilter } from "./filters/AbilityTypeFilter";
 
 export const FilterSidebar = () => {
   return (
@@ -11,7 +12,7 @@ export const FilterSidebar = () => {
       display="flex"
       flexDirection="column"
       gap={2}
-      minWidth={300}
+      maxWidth={300}
       margin={5}
     >
       <Typography variant="h5">Filters</Typography>
@@ -20,6 +21,7 @@ export const FilterSidebar = () => {
       <TeamSizeFilter />
       <TeamBalanceFilter />
       <RoleFilter />
+      <AbilityTypeFilter />
     </Box>
   );
 };

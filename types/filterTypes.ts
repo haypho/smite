@@ -4,6 +4,7 @@ export enum TeamBalance {
   UNBALANCED = "Unbalanced",
 }
 
+/** @deprecated use dynamic string mapping */
 export enum Role {
   ASSASSIN = "Assassin",
   GUARDIAN = "Guardian",

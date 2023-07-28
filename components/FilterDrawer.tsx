@@ -8,13 +8,13 @@ import {
 } from "@mui/material";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch, RootState } from "../../../stores/store";
-import filtersSlice from "../stores/filters.slice";
+import { AppDispatch, RootState, filtersSlice } from "../stores";
 import { Close } from "@mui/icons-material";
 import { TeamsFilter } from "./filters/TeamsFilter";
 import { TeamSizeFilter } from "./filters/TeamSizeFilter";
 import { RoleFilter } from "./filters/RoleFilter";
 import { TeamBalanceFilter } from "./filters/TeamBalanceFilter";
+import { AbilityTypeFilter } from "./filters/AbilityTypeFilter";
 
 export const FilterDrawer = () => {
   const dispatch: AppDispatch = useDispatch();
@@ -54,6 +54,7 @@ export const FilterDrawer = () => {
         <TeamSizeFilter />
         <TeamBalanceFilter />
         <RoleFilter />
+        <AbilityTypeFilter />
       </Box>
     </SwipeableDrawer>
   );

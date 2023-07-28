@@ -1,6 +1,5 @@
 import { configureStore, combineReducers } from "@reduxjs/toolkit";
-import { randomizerSlice } from "../features/randomizer";
-import filtersSlice from "../features/filter/stores/filters.slice";
+import { filtersSlice, randomizerSlice } from ".";
 
 export const store = configureStore({
   reducer: combineReducers({

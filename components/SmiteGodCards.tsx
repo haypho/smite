@@ -2,7 +2,7 @@ import React from "react";
 import { Box, Card, CardContent, Typography } from "@mui/material";
 import styled from "@emotion/styled";
 import { useSelector } from "react-redux";
-import { RootState } from "../../../stores/store";
+import { RootState } from "../stores";
 
 const SmiteGodCard = styled(Card)`
   width: 300px;
@@ -26,6 +26,7 @@ export const SmiteGodCards = () => {
       marginTop={5}
       flexWrap="wrap"
       gap={5}
+      height="fit-content"
     >
       {randomGods.map((god) => (
         <SmiteGodCard
