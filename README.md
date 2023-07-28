@@ -19,6 +19,12 @@ npm run dev
 
 Open [http://localhost:3000/smite](http://localhost:3000/smite) with your browser to see the result.
 
+## Contributing
+
+### Conventional Commits
+
+This repository has switched to using the [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0) format for git commit messages.
+
 ## Learn More
 
 To learn more about Next.js, take a look at the following resources:
