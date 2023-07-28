@@ -4,7 +4,6 @@ import { Role, TeamBalance } from "../../types";
 import { getRandomIntWithInclusiveRange } from "../integer.utils";
 import {
   filterByAbilityTypes,
-  filterByRole,
   filterByRoles,
   mapGodToRoles,
   mapGodsToRoles,
@@ -91,7 +90,10 @@ export const generateRandomGods = (
       return currentGods;
     }, []);
 
-  postMessage(smiteGods);
+  postMessage({
+    randomGods: smiteGods,
+    results: availableGods.length,
+  });
 };
 
 addEventListener("message", generateRandomGods);
