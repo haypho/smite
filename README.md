@@ -17,7 +17,7 @@ You may now start the development server
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000/smite](http://localhost:3000/smite) with your browser to see the result.
 
 ## Learn More
 
