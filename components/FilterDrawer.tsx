@@ -14,6 +14,7 @@ import { TeamsFilter } from "./filters/TeamsFilter";
 import { TeamSizeFilter } from "./filters/TeamSizeFilter";
 import { RoleFilter } from "./filters/RoleFilter";
 import { TeamBalanceFilter } from "./filters/TeamBalanceFilter";
+import { AbilityTypeFilter } from "./filters/AbilityTypeFilter";
 
 export const FilterDrawer = () => {
   const dispatch: AppDispatch = useDispatch();
@@ -53,6 +54,7 @@ export const FilterDrawer = () => {
         <TeamSizeFilter />
         <TeamBalanceFilter />
         <RoleFilter />
+        <AbilityTypeFilter />
       </Box>
     </SwipeableDrawer>
   );

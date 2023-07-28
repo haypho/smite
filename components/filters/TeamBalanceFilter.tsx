@@ -6,9 +6,8 @@ import {
 } from "@mui/material";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch, RootState } from "../../../../stores/store";
-import filtersSlice from "../../stores/filters.slice";
 import { TeamBalance } from "../../types/filterTypes";
+import { AppDispatch, RootState, filtersSlice } from "../../stores";
 
 export const TeamBalanceFilter = () => {
   const dispatch: AppDispatch = useDispatch();
@@ -32,11 +31,7 @@ export const TeamBalanceFilter = () => {
           dispatch(filtersSlice.actions.updateTeamBalance(value))
         }
       >
-        {[
-          TeamBalance.BALANCED,
-          TeamBalance.SEMI_BALANCED,
-          TeamBalance.UNBALANCED,
-        ].map((balance) => (
+        {[TeamBalance.BALANCED, TeamBalance.UNBALANCED].map((balance) => (
           <ToggleButton key={balance} value={balance} size="small">
             {balance}
           </ToggleButton>

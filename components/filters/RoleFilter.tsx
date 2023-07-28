@@ -34,7 +34,7 @@ export const RoleFilter = () => {
             key={role}
             control={
               <Checkbox
-                defaultChecked={currentRoles.includes(role)}
+                checked={currentRoles.includes(role)}
                 onChange={updateRole(role)}
               />
             }

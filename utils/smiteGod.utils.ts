@@ -1,7 +1,6 @@
 import { SmiteGod } from "../api/smite/types";
-import { Role } from "../types";
 
-export const getAbilityTypes = (god: SmiteGod): string[] => {
+export const mapGodToAbilityTypes = (god: SmiteGod): string[] => {
   const abilityKeys = [
     "Ability_1",
     "Ability_2",
@@ -26,18 +25,50 @@ export const getAbilityTypes = (god: SmiteGod): string[] => {
   );
 };
 
+export const filterByRole =
+  (role: string) =>
+    (god: SmiteGod): boolean =>
+      !role || mapGodToRoles(god).includes(role);
+
 export const filterByRoles =
-  (roles: Role[]) =>
-  (god: SmiteGod): boolean => {
-    const godRoles = god.Roles.split(",").map((role) => role.trim());
-    return roles.some((role) => godRoles.includes(role));
-  };
+  (roles: string[]) =>
+    (god: SmiteGod): boolean =>
+      roles.length <= 0 ||
+      mapGodToRoles(god).some((godRole) => roles.includes(godRole));
 
 export const filterByAbilityTypes =
   (abilityTypes: string[]) =>
-  (god: SmiteGod): boolean => {
-    const godAbilityTypes = getAbilityTypes(god);
-    return abilityTypes.some((abilityType) =>
-      godAbilityTypes.includes(abilityType),
-    );
-  };
+    (god: SmiteGod): boolean =>
+      abilityTypes.length <= 0 ||
+      mapGodToAbilityTypes(god).some((abilityType) =>
+        abilityTypes.includes(abilityType),
+      );
+
+export const mapGodToRoles = (god?: SmiteGod): string[] =>
+  god?.Roles.split(",").map((role) => role.trim()) ?? [];
+
+export const mapGodsToRoles = (gods: SmiteGod[]): string[] =>
+  Array.from(
+    gods.flatMap(mapGodToRoles).reduce((roles: Set<string>, role: string) => {
+      roles.add(role);
+      return roles;
+    }, new Set()),
+  );
+
+export const mapRolesToRoleCounts = (
+  roles: string[],
+): { role: string; count: number }[] =>
+  roles.reduce(
+    (roleCounts: { role: string; count: number }[], role: string) => {
+      const index = roleCounts.findIndex(
+        (roleCount) => roleCount.role === role,
+      );
+      if (index < 0) {
+        roleCounts.push({ role, count: 1 });
+      } else {
+        roleCounts[index] = { role, count: roleCounts[index].count + 1 };
+      }
+      return roleCounts;
+    },
+    [],
+  );

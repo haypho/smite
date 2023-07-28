@@ -4,15 +4,11 @@ export enum TeamBalance {
   UNBALANCED = "Unbalanced",
 }
 
+/** @deprecated use dynamic string mapping */
 export enum Role {
   ASSASSIN = "Assassin",
   GUARDIAN = "Guardian",
   HUNTER = "Hunter",
   MAGE = "Mage",
   WARRIOR = "Warrior",
-}
-
-export enum AbilityShape {
-  CONE = "Cone",
-  CIRCLE = "Circle",
 }

@@ -12,7 +12,7 @@ export const FilterSidebar = () => {
       display="flex"
       flexDirection="column"
       gap={2}
-      minWidth={300}
+      maxWidth={300}
       margin={5}
     >
       <Typography variant="h5">Filters</Typography>

@@ -28,7 +28,7 @@ export const AbilityTypeFilter = () => {
               key={abilityType}
               control={
                 <Checkbox
-                  defaultChecked={currentAbilityTypes.includes(abilityType)}
+                  checked={currentAbilityTypes.includes(abilityType)}
                   onChange={(_, checked: boolean) =>
                     dispatch(
                       filtersSlice.actions[

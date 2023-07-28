@@ -1,5 +1,3 @@
-import { Role } from "../../features/filter/types/filterTypes";
-
 export type MenuItem = {
   description: string;
   value: string;

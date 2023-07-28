@@ -26,6 +26,7 @@ export const SmiteGodCards = () => {
       marginTop={5}
       flexWrap="wrap"
       gap={5}
+      height="fit-content"
     >
       {randomGods.map((god) => (
         <SmiteGodCard

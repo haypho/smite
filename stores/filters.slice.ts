@@ -14,7 +14,7 @@ const initialState: FiltersState = {
   isDrawerOpen: false,
   teams: 1,
   teamSize: 3,
-  teamBalance: TeamBalance.SEMI_BALANCED,
+  teamBalance: TeamBalance.BALANCED,
   roles: [],
   abilityTypes: [],
 };

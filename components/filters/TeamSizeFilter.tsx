@@ -1,11 +1,10 @@
 import { FormControl, FormLabel, Slider } from "@mui/material";
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch, RootState, filtersSlice } from "../../stores";
+import { useDispatch } from "react-redux";
+import { AppDispatch, filtersSlice } from "../../stores";
 
 export const TeamSizeFilter = () => {
   const dispatch: AppDispatch = useDispatch();
-  const teamSize = useSelector((state: RootState) => state.filters.teamSize);
 
   return (
     <FormControl>
@@ -36,7 +35,7 @@ export const TeamSizeFilter = () => {
         ]}
         min={1}
         max={5}
-        defaultValue={teamSize}
+        defaultValue={3}
         onChangeCommitted={(_, value) =>
           dispatch(
             filtersSlice.actions.updateTeamSize(
