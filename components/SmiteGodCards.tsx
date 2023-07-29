@@ -19,17 +19,17 @@ export const SmiteGodCards = () => {
   );
 
   return (
-    randomGods.length ? (
-      <Box
-        display="flex"
-        flex={1}
-        justifyContent="center"
-        marginTop={5}
-        flexWrap="wrap"
-        gap={5}
-        height="fit-content"
-      >
-        {randomGods.map((god) => (
+    <Box
+      display="flex"
+      flex={1}
+      justifyContent="center"
+      marginTop={5}
+      flexWrap="wrap"
+      gap={5}
+      height="fit-content"
+    >
+      {randomGods.length ? (
+        randomGods.map((god) => (
           <SmiteGodCard
             key={god.id}
             sx={{
@@ -53,19 +53,10 @@ export const SmiteGodCards = () => {
               </Typography>
             </CardContent>
           </SmiteGodCard>
-        ))}
-      </Box>
-    ) : (
-      <Container sx={{ height: 'calc(90vh - 64px)' }}>
-        <Box
-          display="flex"
-          alignItems="center"
-          justifyContent="center"
-          height="100%"
-        >
-          <Typography color="gray">No results found.</Typography>
-        </Box>
-      </Container>
-    )
+        ))
+      ) : (
+        <Typography color="gray">No results found.</Typography>
+      )}
+    </Box>
   );
 };

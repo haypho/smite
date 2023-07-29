@@ -20,6 +20,8 @@ import { SmiteGodCards } from "./SmiteGodCards";
 import { FilterDrawer } from "./FilterDrawer";
 
 const MainContainer = styled.main`
+  display: flex;
+  flex-direction: column;
   flex: 1;
 `;
 
@@ -49,7 +51,7 @@ export const Main = () => {
           </Toolbar>
         </Container>
       </AppBar>
-      <Box display="flex">
+      <Box display="flex" flex={1}>
         {!isSmallScreen && <FilterSidebar />}
         <SmiteGodCards />
       </Box>
