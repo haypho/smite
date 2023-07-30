@@ -1,6 +1,15 @@
 import { SmiteGod } from "../api/smite/types";
 
-export const mapGodToAbilityTypes = (god: SmiteGod): string[] => {
+export type AbilityTypes =
+  | "Ability_1"
+  | "Ability_2"
+  | "Ability_3"
+  | "Ability_4"
+  | "Ability_5";
+
+export const mapGodToAbilityTypes = (
+  god: Pick<SmiteGod, AbilityTypes>,
+): string[] => {
   const abilityKeys = [
     "Ability_1",
     "Ability_2",
@@ -27,27 +36,27 @@ export const mapGodToAbilityTypes = (god: SmiteGod): string[] => {
 
 export const filterByRole =
   (role: string) =>
-    (god: SmiteGod): boolean =>
+    (god: Pick<SmiteGod, "Roles">): boolean =>
       !role || mapGodToRoles(god).includes(role);
 
 export const filterByRoles =
   (roles: string[]) =>
-    (god: SmiteGod): boolean =>
+    (god: Pick<SmiteGod, "Roles">): boolean =>
       roles.length <= 0 ||
       mapGodToRoles(god).some((godRole) => roles.includes(godRole));
 
 export const filterByAbilityTypes =
   (abilityTypes: string[]) =>
-    (god: SmiteGod): boolean =>
+    (god: Pick<SmiteGod, AbilityTypes>): boolean =>
       abilityTypes.length <= 0 ||
       mapGodToAbilityTypes(god).some((abilityType) =>
         abilityTypes.includes(abilityType),
       );
 
-export const mapGodToRoles = (god?: SmiteGod): string[] =>
+export const mapGodToRoles = (god?: Pick<SmiteGod, "Roles">): string[] =>
   god?.Roles.split(",").map((role) => role.trim()) ?? [];
 
-export const mapGodsToRoles = (gods: SmiteGod[]): string[] =>
+export const mapGodsToRoles = (gods: Pick<SmiteGod, "Roles">[]): string[] =>
   Array.from(
     gods.flatMap(mapGodToRoles).reduce((roles: Set<string>, role: string) => {
       roles.add(role);
