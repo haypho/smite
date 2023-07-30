@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Card, CardContent, Container, Typography } from "@mui/material";
+import { Box, Card, CardContent, Typography } from "@mui/material";
 import styled from "@emotion/styled";
 import { useSelector } from "react-redux";
 import { RootState } from "../stores";
