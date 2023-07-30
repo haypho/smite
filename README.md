@@ -1,5 +1,6 @@
 # Smite Website
 
+[![CI/CD](https://github.com/hphothong/smite/actions/workflows/ci-cd.yml/badge.svg)](https://github.com/hphothong/smite/actions/workflows/ci-cd.yml)
 [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
 
 ## Getting Started
