@@ -29,7 +29,8 @@ export const filtersSlice = createSlice({
     updateTeamSize: (state, action: PayloadAction<number>) => {
       state.teamSize = action.payload;
     },
-    updateTeamBalance: (state, action: PayloadAction<TeamBalance>) => {
+    updateTeamBalance: (state, action: PayloadAction<TeamBalance>) => {      
+      if(action.payload)
       state.teamBalance = action.payload;
     },
     addRole: (state, action: PayloadAction<Role>) => {
