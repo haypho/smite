@@ -27,9 +27,11 @@ export const TeamBalanceFilter = () => {
         exclusive
         color="primary"
         value={currentBalance}
-        onChange={(_, value) =>
-          dispatch(filtersSlice.actions.updateTeamBalance(value))
-        }
+        onChange={(_, value) => {
+          if(value){
+            dispatch(filtersSlice.actions.updateTeamBalance(value))
+          }
+        }}
       >
         {[TeamBalance.BALANCED, TeamBalance.UNBALANCED].map((balance) => (
           <ToggleButton key={balance} value={balance} size="small">
