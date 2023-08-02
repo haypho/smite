@@ -30,7 +30,6 @@ export const filtersSlice = createSlice({
       state.teamSize = action.payload;
     },
     updateTeamBalance: (state, action: PayloadAction<TeamBalance>) => {      
-      if(action.payload)
       state.teamBalance = action.payload;
     },
     addRole: (state, action: PayloadAction<Role>) => {
