@@ -28,9 +28,8 @@ export const TeamBalanceFilter = () => {
         color="primary"
         value={currentBalance}
         onChange={(_, value) => {
-          if(value){
+          if(value)
             dispatch(filtersSlice.actions.updateTeamBalance(value))
-          }
         }}
       >
         {[TeamBalance.BALANCED, TeamBalance.UNBALANCED].map((balance) => (
