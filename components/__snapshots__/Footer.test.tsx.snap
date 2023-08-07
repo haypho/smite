@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Footer /> should match the snapshot 1`] = `
+<div>
+  <footer>
+    <div
+      class="MuiContainer-root MuiContainer-maxWidthLg css-1oqqzyl-MuiContainer-root"
+    >
+      <div
+        class="MuiBox-root css-1vom740"
+      >
+        <p
+          class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
+        >
+          Data provided by Hi-Rez Studios. © Hi-Rez Studios, Inc. All rights reserved.
+        </p>
+      </div>
+    </div>
+  </footer>
+</div>
+`;
