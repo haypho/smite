@@ -1,7 +1,6 @@
 import { Box, Container, Typography } from "@mui/material";
-import { FC } from "react";
 
-export const Footer: FC = () => (
+export const Footer = () => (
   <footer>
     <Container>
       <Box
