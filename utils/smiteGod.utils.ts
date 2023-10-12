@@ -20,7 +20,7 @@ export const mapGodToAbilityTypes = (
 
   return Array.from(
     abilityKeys.reduce((abilityTypes: Set<string>, abilityKey) => {
-      god[abilityKey].Description.itemDescription.menuitems.forEach(
+      god[abilityKey].Description?.itemDescription.menuitems.forEach(
         (menuItem) => {
           if (menuItem.description.toLowerCase().includes("ability type")) {
             menuItem.value.split(",").forEach((abilityType) => {
@@ -36,22 +36,22 @@ export const mapGodToAbilityTypes = (
 
 export const filterByRole =
   (role: string) =>
-    (god: Pick<SmiteGod, "Roles">): boolean =>
-      !role || mapGodToRoles(god).includes(role);
+  (god: Pick<SmiteGod, "Roles">): boolean =>
+    !role || mapGodToRoles(god).includes(role);
 
 export const filterByRoles =
   (roles: string[]) =>
-    (god: Pick<SmiteGod, "Roles">): boolean =>
-      roles.length <= 0 ||
-      mapGodToRoles(god).some((godRole) => roles.includes(godRole));
+  (god: Pick<SmiteGod, "Roles">): boolean =>
+    roles.length <= 0 ||
+    mapGodToRoles(god).some((godRole) => roles.includes(godRole));
 
 export const filterByAbilityTypes =
   (abilityTypes: string[]) =>
-    (god: Pick<SmiteGod, AbilityTypes>): boolean =>
-      abilityTypes.length <= 0 ||
-      mapGodToAbilityTypes(god).some((abilityType) =>
-        abilityTypes.includes(abilityType),
-      );
+  (god: Pick<SmiteGod, AbilityTypes>): boolean =>
+    abilityTypes.length <= 0 ||
+    mapGodToAbilityTypes(god).some((abilityType) =>
+      abilityTypes.includes(abilityType),
+    );
 
 export const mapGodToRoles = (god?: Pick<SmiteGod, "Roles">): string[] =>
   god?.Roles.split(",").map((role) => role.trim()) ?? [];

@@ -1,14 +1,6 @@
 import { useMemo } from "react";
 import { useGodsQuery } from "./api/smite/useGodsQuery";
-import { SmiteGod } from "../api/smite/types";
-
-const abilityKeys = [
-  "Ability_1",
-  "Ability_2",
-  "Ability_3",
-  "Ability_4",
-  "Ability_5",
-] satisfies Array<keyof SmiteGod>;
+import { mapGodToAbilityTypes } from "../utils";
 
 export const useGodAbilityTypes = () => {
   const { data } = useGodsQuery();
@@ -18,19 +10,10 @@ export const useGodAbilityTypes = () => {
       data &&
       Array.from(
         data.reduce((abilityTypes: Set<string>, god) => {
-          abilityKeys.forEach((key) => {
-            god[key].Description.itemDescription.menuitems.forEach(
-              (menuItem) => {
-                if (
-                  menuItem.description.toLowerCase().includes("ability type")
-                ) {
-                  menuItem.value.split(",").forEach((abilityType) => {
-                    abilityTypes.add(abilityType.trim());
-                  });
-                }
-              },
-            );
-          });
+          const godAbilityTypes = mapGodToAbilityTypes(god);
+          godAbilityTypes.forEach((abilityType) =>
+            abilityTypes.add(abilityType),
+          );
           return abilityTypes;
         }, new Set<string>()),
       ).sort(),

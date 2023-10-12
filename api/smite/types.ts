@@ -14,7 +14,7 @@ export type AbilityDescription = {
 };
 
 export type Ability = {
-  Description: AbilityDescription;
+  Description?: AbilityDescription;
   Id: number;
   Summary: string;
   URL: string;
