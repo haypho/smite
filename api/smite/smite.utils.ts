@@ -33,13 +33,13 @@ export const formatRequestURL = ({
   sessionId,
 }:
   | {
-    method: SmiteMethod;
-    sessionId: string;
-  }
+      method: SmiteMethod;
+      sessionId: string;
+    }
   | {
-    method: SmiteMethod.CREATE_SESSION;
-    sessionId?: undefined;
-  }): URL => {
+      method: SmiteMethod.CREATE_SESSION;
+      sessionId?: undefined;
+    }): URL => {
   const developerId = process.env.SMITE_DEVELOPER_ID;
   const signature = getSignature(method);
   const timestamp = getTimestampUTC();

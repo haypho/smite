@@ -11,6 +11,7 @@
     "lint": "next lint",
     "test": "jest --ci --coverage",
     "test:watch": "jest --watch",
+    "tsc": "tsc --noEmit",
     "prepare": "husky install",
     "commitlint": "commitlint --edit"
   },
